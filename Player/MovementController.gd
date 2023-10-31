@@ -20,7 +20,7 @@ var low_gravity_duration := .2  # Adjust as needed
 var is_crouching := false
 var is_sprinting := false
 var jump_amount := max_jumps
-var is_wall_running := false
+var is_wall_running: get = _get_wallrun
 
 
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
@@ -29,6 +29,8 @@ var is_wall_running := false
 @onready var crouch_collision = $CrouchCollision
 @onready var head = $Head
 
+func _get_wallrun():
+	return is_wall_running
 
 #Handles Wall Running
 func wall_run():

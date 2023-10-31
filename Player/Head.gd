@@ -5,6 +5,9 @@ extends Node3D
 @onready var cam: Camera3D = get_node(cam_path)
 @onready var interaction = $Camera/Interaction
 @onready var hand = $Camera/Hand
+@onready var animation_player = $AnimationPlayer
+@onready var weapon_pivot = $Camera/WeaponPivot
+@onready var player = $".."
 
 @export var mouse_sensitivity := 2.0
 @export var y_limit := 90.0
@@ -40,7 +43,20 @@ func _physics_process(delta: float) -> void:
 	var joystick_axis := Input.get_vector(&"look_left", &"look_right",
 			&"look_down", &"look_up")
 	
-	if Input.is_action_just_pressed("Lclick"):
+	if picked_object == null:
+		weapon_pivot.visible = true
+	if picked_object != null:
+		weapon_pivot.visible = false
+	if player.is_wall_running == true and not animation_player.current_animation == "attack":
+		animation_player.play("wallrun")
+	elif player.is_wall_running == false and not animation_player.current_animation == "attack":
+		animation_player.play("idle")
+	
+	if Input.is_action_just_pressed("Lclick") and not animation_player.current_animation == "attack":
+		animation_player.stop()
+		animation_player.play("attack")
+	
+	if Input.is_action_just_pressed("ePress"):
 		if picked_object == null:
 			pick_object()
 		elif picked_object != null:
@@ -64,3 +80,7 @@ func camera_rotation() -> void:
 	
 	get_owner().rotation.y = rot.y
 	rotation.x = rot.x
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "attack":
+		animation_player.play("idle")
