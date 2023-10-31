@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdupkh0grwy27"]
+
+[ext_resource type="PackedScene" uid="uid://lqyku5wn2wo0" path="res://Player/MovementController.tscn" id="1_t1jcr"]
+[ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://Player/Head.tscn" id="2_41iu1"]
+[ext_resource type="Script" path="res://Player/Sprint.gd" id="3_bgqcu"]
+[ext_resource type="Script" path="res://Player/WallRunCam.gd" id="4_dl65c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktmy5"]
+height = 1.2
+
+[node name="Player" instance=ExtResource("1_t1jcr")]
+
+[node name="CrouchCollision" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.407283, 0)
+shape = SubResource("CapsuleShape3D_ktmy5")
+disabled = true
+
+[node name="Head" parent="." index="2" instance=ExtResource("2_41iu1")]
+
+[node name="Sprint" type="Node" parent="." index="3"]
+script = ExtResource("3_bgqcu")
+
+[node name="WallRunCam" type="Node" parent="." index="4"]
+script = ExtResource("4_dl65c")
+
+[editable path="Head"]
