@@ -28,7 +28,6 @@ func _physics_process(delta: float) -> void:
 	local_pos = collision.to_local(collision.position)
 	side = get_side(local_pos)
 	if player.is_wall_running:
-		print(collision.to_local(collision.position))
 		if side == "LEFT":
 			wall_run_current_angle = delta * -15
 			wall_run_current_angle = clamp(wall_run_current_angle, -wall_run_angle, wall_run_angle)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d2vgv6ie0v40s"]
+[gd_scene load_steps=29 format=3 uid="uid://d2vgv6ie0v40s"]
 
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="1_km1jj"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="1_qgept"]
@@ -56,9 +56,11 @@ size = Vector3(14, 0.5, 4)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_do582"]
 data = PackedVector3Array(-7, 0.25, 2, 7, 0.25, 2, -7, -0.25, 2, 7, 0.25, 2, 7, -0.25, 2, -7, -0.25, 2, 7, 0.25, -2, -7, 0.25, -2, 7, -0.25, -2, -7, 0.25, -2, -7, -0.25, -2, 7, -0.25, -2, 7, 0.25, 2, 7, 0.25, -2, 7, -0.25, 2, 7, 0.25, -2, 7, -0.25, -2, 7, -0.25, 2, -7, 0.25, -2, -7, 0.25, 2, -7, -0.25, -2, -7, 0.25, 2, -7, -0.25, 2, -7, -0.25, -2, 7, 0.25, 2, -7, 0.25, 2, 7, 0.25, -2, -7, 0.25, 2, -7, 0.25, -2, 7, 0.25, -2, -7, -0.25, 2, 7, -0.25, 2, -7, -0.25, -2, 7, -0.25, 2, 7, -0.25, -2, -7, -0.25, -2)
 
-[sub_resource type="SphereMesh" id="SphereMesh_82sk7"]
+[sub_resource type="BoxMesh" id="BoxMesh_nijrd"]
+size = Vector3(2.255, 0.23, 1.46)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_nkj1s"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0k0iw"]
+points = PackedVector3Array(1.10664, 0.113419, 0.73, -1.1454, -0.132897, -0.747897, -1.11813, 0.114676, -0.73, -1.1454, -0.132897, 0.755437, 1.1454, -0.132897, -0.747897, 1.1454, -0.132897, 0.755437, 1.11813, 0.114676, -0.73, -1.10664, 0.113419, 0.73)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_02f4c"]
 panorama = ExtResource("6_udrwv")
@@ -77,8 +79,6 @@ ssao_enabled = true
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
-
-[sub_resource type="FontVariation" id="FontVariation_d826y"]
 
 [node name="L_Main" type="Node3D"]
 script = ExtResource("1_km1jj")
@@ -268,10 +268,10 @@ shape = SubResource("ConcavePolygonShape3D_do582")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951402, 4.71378)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ArenaGeometry/RigidBody3D"]
-mesh = SubResource("SphereMesh_82sk7")
+mesh = SubResource("BoxMesh_nijrd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/RigidBody3D"]
-shape = SubResource("SphereShape3D_nkj1s")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ArenaGeometry/RigidBody3D"]
+shape = SubResource("ConvexPolygonShape3D_0k0iw")
 
 [node name="TooSteep2" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, 5.5, 8)
@@ -299,15 +299,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -17.0
-offset_top = -34.0
-offset_right = 17.0
+offset_left = -594.0
+offset_top = -348.0
+offset_right = -554.0
+offset_bottom = -325.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("FontVariation_d826y")
-theme_override_font_sizes/font_size = 15
-text = "TEST"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 script = ExtResource("7_c533u")

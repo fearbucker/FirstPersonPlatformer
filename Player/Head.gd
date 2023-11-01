@@ -8,6 +8,7 @@ extends Node3D
 @onready var animation_player = $AnimationPlayer
 @onready var weapon_pivot = $Camera/WeaponPivot
 @onready var player = $".."
+@onready var camera_animations = $Camera/camera_animations
 
 @export var mouse_sensitivity := 2.0
 @export var y_limit := 90.0
@@ -37,11 +38,17 @@ func _input(event: InputEvent) -> void:
 		mouse_axis = event.relative
 		camera_rotation()
 
+func head_bob():
+	if player.is_on_floor() and player.velocity.length() > 6:
+		camera_animations.play("head_bob")
+	else:
+		camera_animations.play("RESET")
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
 	var joystick_axis := Input.get_vector(&"look_left", &"look_right",
 			&"look_down", &"look_up")
+	head_bob()
 	
 	if picked_object == null:
 		weapon_pivot.visible = true
