@@ -55,10 +55,14 @@ func _physics_process(delta: float) -> void:
 		weapon_pivot.visible = true
 	if picked_object != null:
 		weapon_pivot.visible = false
+	
 	if player.is_wall_running == true and not animation_player.current_animation == "attack":
 		animation_player.play("wallrun")
 	elif player.is_wall_running == false and not animation_player.current_animation == "attack":
-		animation_player.play("idle")
+		if player.is_sprinting:
+			animation_player.play("sprinting")
+		else:
+			animation_player.play("idle")
 	
 	if Input.is_action_just_pressed("Lclick") and not animation_player.current_animation == "attack":
 		animation_player.stop()
