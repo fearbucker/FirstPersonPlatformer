@@ -57,10 +57,10 @@ size = Vector3(14, 0.5, 4)
 data = PackedVector3Array(-7, 0.25, 2, 7, 0.25, 2, -7, -0.25, 2, 7, 0.25, 2, 7, -0.25, 2, -7, -0.25, 2, 7, 0.25, -2, -7, 0.25, -2, 7, -0.25, -2, -7, 0.25, -2, -7, -0.25, -2, 7, -0.25, -2, 7, 0.25, 2, 7, 0.25, -2, 7, -0.25, 2, 7, 0.25, -2, 7, -0.25, -2, 7, -0.25, 2, -7, 0.25, -2, -7, 0.25, 2, -7, -0.25, -2, -7, 0.25, 2, -7, -0.25, 2, -7, -0.25, -2, 7, 0.25, 2, -7, 0.25, 2, 7, 0.25, -2, -7, 0.25, 2, -7, 0.25, -2, 7, 0.25, -2, -7, -0.25, 2, 7, -0.25, 2, -7, -0.25, -2, 7, -0.25, 2, 7, -0.25, -2, -7, -0.25, -2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nijrd"]
-size = Vector3(2.255, 0.23, 1.46)
+size = Vector3(5.095, 0.23, 4.85)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0k0iw"]
-points = PackedVector3Array(1.10664, 0.113419, 0.73, -1.1454, -0.132897, -0.747897, -1.11813, 0.114676, -0.73, -1.1454, -0.132897, 0.755437, 1.1454, -0.132897, -0.747897, 1.1454, -0.132897, 0.755437, 1.11813, 0.114676, -0.73, -1.10664, 0.113419, 0.73)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ul1ho"]
+points = PackedVector3Array(-2.5475, -0.115, -2.425, -2.5475, 0.115, -2.425, 2.547, -0.115, -2.425, -2.5475, -0.115, 2.425, -2.5475, 0.115, 2.425, 2.547, 0.115, -2.425, 2.547, -0.115, 2.425, 2.547, 0.115, 2.425)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_02f4c"]
 panorama = ExtResource("6_udrwv")
@@ -270,8 +270,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951402, 4.71378)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ArenaGeometry/RigidBody3D"]
 mesh = SubResource("BoxMesh_nijrd")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ArenaGeometry/RigidBody3D"]
-shape = SubResource("ConvexPolygonShape3D_0k0iw")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/RigidBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ul1ho")
 
 [node name="TooSteep2" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, 5.5, 8)

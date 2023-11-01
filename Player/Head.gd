@@ -5,7 +5,7 @@ extends Node3D
 @onready var cam: Camera3D = get_node(cam_path)
 @onready var interaction = $Camera/Interaction
 @onready var hand = $Camera/Hand
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player = $WeaponAnimationPlayer
 @onready var weapon_pivot = $Camera/WeaponPivot
 @onready var player = $".."
 @onready var camera_animations = $Camera/camera_animations
@@ -46,6 +46,7 @@ func head_bob():
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
+
 	var joystick_axis := Input.get_vector(&"look_left", &"look_right",
 			&"look_down", &"look_up")
 	head_bob()

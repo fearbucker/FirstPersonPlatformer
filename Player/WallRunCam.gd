@@ -6,27 +6,27 @@ extends Node
 var wall_run_current_angle = 0
 var side = ""
 @onready var controller: MovementController = get_node(controller_path)
-@onready var collision = $"../Collision"
 
 @export_node_path("Node3D") var head_path := NodePath("../Head")
 @onready var cam: Camera3D = get_node(head_path).cam
 @onready var player = $".."
 var local_pos
+@onready var right_ray = $"../RightRay"
+@onready var left_ray = $"../LeftRay"
 
 @onready var normal_speed: int = controller.speed
 @onready var normal_fov: float = cam.fov
-func get_side(point):
-	if point.x < 0:
+func get_side():
+	if right_ray.is_colliding():
 		return "RIGHT"
-	elif point.x > 0:
+	elif left_ray.is_colliding():
 		return "LEFT"
 	else:
 		return "CENTER"
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
-	local_pos = collision.to_local(collision.position)
-	side = get_side(local_pos)
+	side = get_side()
 	if player.is_wall_running:
 		if side == "LEFT":
 			wall_run_current_angle = delta * -15
