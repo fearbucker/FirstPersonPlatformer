@@ -9,7 +9,12 @@ extends Node3D
 @onready var weapon_pivot = $Camera/WeaponPivot
 @onready var player = $".."
 @onready var camera_animations = $Camera/camera_animations
+@onready var hook = $Hook
+@onready var line_helper = $LineHelper
+@onready var line = $LineHelper/Line
 
+
+@export var grapple_point : NodePath
 @export var mouse_sensitivity := 2.0
 @export var y_limit := 90.0
 var mouse_axis := Vector2()
@@ -17,8 +22,75 @@ var rot := Vector3()
 var picked_object
 var pull_force = 8
 
+# Grappling Variables
+@export var max_grapple_speed := 1.5
+@export var grapple_speed := .5
+@export var rest_length := 1.0
+var hooked := false
+var grapple_position := Vector3()
+# HOOK STUFF
+
+func handle_hook() -> void:
+	check_hook_activation()
+	var length := calculate_path()
+	draw_hook(length)
+	look_for_point()
+	
+func check_hook_activation() -> void:
+	# Activate hook
+	
+
+	if Input.is_action_just_pressed("hook") and hook.is_colliding():
+		hooked = true
+		grapple_position = hook.get_collision_point()
+		line.show()
+
+	# Stop grappling
+	elif Input.is_action_just_released("hook"):
+		hooked = false
+		line.hide()
+
+func calculate_path() -> float:
+	var player2hook: Vector3 = grapple_position - player.position
+	var length := player2hook.length()
+	if hooked:
+		# if we more than 4 away from line, don't dampen speed as much
+		if length > 4:
+			player.velocity *= .999
+		# Otherwise dampen speed more
+		else:
+			player.velocity *= .9
+		
+		# Hook's law equation
+		var force := grapple_speed * (length - rest_length)
+		
+		# Clamp force to be less than max_grapple_speed
+		if abs(force) > max_grapple_speed:
+			force = max_grapple_speed
+		
+		# Preserve direction, but scale by force
+		player.velocity += player2hook.normalized() * force
+	
+	return length
+	
+func draw_hook(length: float) -> void:
+	var direction = grapple_position - line_helper.global_transform.origin
+	var up = Vector3.UP
+	if direction.normalized().dot(up) < 0.99:
+		up = Vector3.RIGHT  # Choose a different up vector that is not nearly aligned
+	line_helper.look_at(grapple_position, up)
+	line.height = length
+	line.position.z = length / -2
+
+	
+func look_for_point() -> void:
+	var grapple_pt := get_node_or_null(grapple_point)
+	if grapple_pt and hook.is_colliding():
+		grapple_pt.translation = hook.get_collision_point()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	line.hide()
 	mouse_sensitivity = mouse_sensitivity / 1000
 	y_limit = deg_to_rad(y_limit)
 
@@ -50,7 +122,7 @@ func _physics_process(delta: float) -> void:
 	var joystick_axis := Input.get_vector(&"look_left", &"look_right",
 			&"look_down", &"look_up")
 	head_bob()
-	
+	handle_hook()
 	if picked_object == null:
 		weapon_pivot.visible = true
 	if picked_object != null:

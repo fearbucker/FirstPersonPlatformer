@@ -5,7 +5,7 @@ var local_pos
 # Reference to the player's MovementController or the relevant script
 @onready var player = $"../Player"
 
-func _process(delta):
+func _process(_delta):
 	# Get the player's velocity from the MovementController
 
 	var velocity = player.velocity
