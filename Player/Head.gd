@@ -13,22 +13,25 @@ extends Node3D
 @onready var line_helper = $LineHelper
 @onready var line = $LineHelper/Line
 
-
+@export var hook_reach = 25
 @export var grapple_point : NodePath
 @export var mouse_sensitivity := 2.0
 @export var y_limit := 90.0
 var mouse_axis := Vector2()
 var rot := Vector3()
 var picked_object
-var pull_force = 8
+var pull_force = 10
 
 # Grappling Variables
 @export var max_grapple_speed := 1.5
-@export var grapple_speed := .5
+@export var grapple_speed := .5 # <---- SPRING CONSTANT ALERT 
 @export var rest_length := 1.0
 var hooked := false
 var grapple_position := Vector3()
 # HOOK STUFF
+
+func set_hook_reach() -> void:
+	hook.scale.y = hook_reach
 
 func handle_hook() -> void:
 	check_hook_activation()
@@ -38,8 +41,6 @@ func handle_hook() -> void:
 	
 func check_hook_activation() -> void:
 	# Activate hook
-	
-
 	if Input.is_action_just_pressed("hook") and hook.is_colliding():
 		hooked = true
 		grapple_position = hook.get_collision_point()
@@ -91,6 +92,7 @@ func look_for_point() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	line.hide()
+	set_hook_reach()
 	mouse_sensitivity = mouse_sensitivity / 1000
 	y_limit = deg_to_rad(y_limit)
 

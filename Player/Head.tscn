@@ -285,6 +285,7 @@ _data = {
 [node name="Head" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
 script = ExtResource("1_enjfg")
+hook_reach = 20
 
 [node name="Camera" type="Camera3D" parent="."]
 current = true
