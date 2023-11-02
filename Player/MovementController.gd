@@ -2,10 +2,6 @@ extends CharacterBody3D
 
 class_name MovementController
 
-# Define signals for velocity and jump_amount
-signal velocity_changed(velocity)
-signal jump_amount_changed(jump_amount)
-
 @export var gravity_multiplier := 3.0
 @export var speed := 20
 @export var sprint_speed := 25
@@ -88,14 +84,7 @@ func _physics_process(delta: float) -> void:
 	crouch()
 	sprint()
 	jump()
-	
-	# After updating velocity
-	emit_signal("velocity_changed", velocity)
-	
-	# After reducing jump_amount
-	emit_signal("jump_amount_changed", jump_amount)
 
-	
 	if is_in_low_gravity:
 		low_gravity_timer += delta
 		if low_gravity_timer >= low_gravity_duration:
@@ -143,3 +132,4 @@ func accelerate(delta: float) -> void:
 
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
+

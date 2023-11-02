@@ -7,6 +7,7 @@ extends Node3D
 @onready var hand = $Camera/Hand
 @onready var animation_player = $WeaponAnimationPlayer
 @onready var weapon_pivot = $Camera/WeaponPivot
+@onready var weapon_hitbox = $Camera/WeaponPivot/WeaponMesh/WeaponHitbox
 @onready var player = $".."
 @onready var camera_animations = $Camera/camera_animations
 @onready var hook = $Hook
@@ -147,6 +148,7 @@ func animation_handler():
 		else:
 			animation_player.play("idle")
 	if Input.is_action_just_pressed("Lclick") and not animation_player.current_animation == "attack":
+		weapon_hitbox.monitoring = true
 		animation_player.stop()
 		animation_player.play("attack")
 
@@ -184,3 +186,4 @@ func camera_rotation() -> void:
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		animation_player.play("idle")
+		weapon_hitbox.monitoring = false

@@ -323,5 +323,7 @@ script = ExtResource("7_c533u")
 radius = 0.2
 material = SubResource("StandardMaterial3D_w2nwh")
 
+[connection signal="body_entered" from="Player/Head/Camera/WeaponPivot/WeaponMesh/WeaponHitbox" to="Player" method="_on_weapon_hitbox_body_entered"]
+
 [editable path="Player"]
 [editable path="Player/Head"]
