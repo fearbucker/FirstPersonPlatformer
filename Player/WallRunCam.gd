@@ -41,5 +41,5 @@ func _physics_process(delta: float) -> void:
 		elif wall_run_current_angle < 0:
 			wall_run_current_angle += delta * 40
 			wall_run_current_angle = max(0, wall_run_current_angle)
-	cam.rotation = lerp(cam.rotation, Vector3(0, 0, 1) * wall_run_current_angle, .2)
+	cam.rotation = lerp(cam.rotation, Vector3(0, 0, 1) * wall_run_current_angle, .09)
 	

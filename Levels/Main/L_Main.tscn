@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d2vgv6ie0v40s"]
+[gd_scene load_steps=30 format=3 uid="uid://d2vgv6ie0v40s"]
 
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="1_km1jj"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="1_qgept"]
@@ -80,11 +80,20 @@ glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2nwh"]
+albedo_color = Color(0.690196, 0, 0.207843, 1)
+
 [node name="L_Main" type="Node3D"]
 script = ExtResource("1_km1jj")
 
 [node name="Player" parent="." instance=ExtResource("1_qgept")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Head" parent="Player" index="2"]
+grapple_point = NodePath("../../CSGSphere3D")
+
+[node name="WeaponMesh" parent="Player/Head/Camera/WeaponPivot" index="0"]
+transform = Transform3D(0.1, 0, 0, 0, 0.980955, 0.0194234, 0, -0.194234, 0.0980955, 0.28, -0.425, -0.4)
 
 [node name="ArenaGeometry" type="Node3D" parent="."]
 
@@ -309,3 +318,10 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 script = ExtResource("7_c533u")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.2
+material = SubResource("StandardMaterial3D_w2nwh")
+
+[editable path="Player"]
+[editable path="Player/Head"]

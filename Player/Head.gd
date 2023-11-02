@@ -86,8 +86,11 @@ func draw_hook(length: float) -> void:
 	
 func look_for_point() -> void:
 	var grapple_pt := get_node_or_null(grapple_point)
-	if grapple_pt and hook.is_colliding():
-		grapple_pt.translation = hook.get_collision_point()
+	if (grapple_pt and hook.is_colliding()) and !hooked:
+		grapple_pt.position = hook.get_collision_point()
+		grapple_pt.visible = true
+	else:
+		grapple_pt.visible = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
