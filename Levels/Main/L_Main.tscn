@@ -341,6 +341,13 @@ offset_bottom = 26.0
 text = "000"
 horizontal_alignment = 2
 
+[node name="BestTime" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 29.0
+offset_right = 46.0
+offset_bottom = 52.0
+
 [node name="VictoryZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.144, 45.1718, 12.0625)
 
