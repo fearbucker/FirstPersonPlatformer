@@ -328,6 +328,7 @@ libraries = {
 }
 
 [node name="HUDCamera" type="Camera2D" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="HUDCamera"]
 texture = ExtResource("2_5qd2e")

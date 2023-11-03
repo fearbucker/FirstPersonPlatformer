@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d2vgv6ie0v40s"]
+[gd_scene load_steps=31 format=3 uid="uid://d2vgv6ie0v40s"]
 
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="1_km1jj"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="1_qgept"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdn7d5mxwdyks" path="res://Levels/Main/Geometry/Wall.tscn" id="3_jw8hm"]
 [ext_resource type="Material" uid="uid://sofvlrq3jmka" path="res://Levels/Main/Materials/M_Dark.tres" id="4_m7xar"]
 [ext_resource type="Texture2D" uid="uid://bsypmdejmb4hv" path="res://Levels/Main/sky.exr" id="6_udrwv"]
-[ext_resource type="Script" path="res://Levels/Main/Label.gd" id="7_c533u"]
+[ext_resource type="Script" path="res://Levels/Main/timer.gd" id="7_k1nvq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_egctf"]
 size = Vector3(8, 4, 4)
@@ -82,6 +82,8 @@ volumetric_fog_density = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2nwh"]
 albedo_color = Color(0.690196, 0, 0.207843, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pln7j"]
 
 [node name="L_Main" type="Node3D"]
 script = ExtResource("1_km1jj")
@@ -302,28 +304,52 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75
 shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -594.0
-offset_top = -348.0
-offset_right = -554.0
-offset_bottom = -325.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-horizontal_alignment = 1
-script = ExtResource("7_c533u")
-
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 radius = 0.2
 material = SubResource("StandardMaterial3D_w2nwh")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 98.0
+offset_bottom = 25.0
+script = ExtResource("7_k1nvq")
+
+[node name="Minutes" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -9.0
+offset_right = 31.0
+offset_bottom = 26.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -1.0
+offset_right = 59.0
+offset_bottom = 25.0
+text = "00."
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Msecs" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 90.0
+offset_bottom = 26.0
+text = "000"
+horizontal_alignment = 2
+
+[node name="VictoryZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.144, 45.1718, 12.0625)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictoryZone"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -5.17726, 8.76196, -6.19987)
+shape = SubResource("BoxShape3D_pln7j")
+
 [connection signal="body_entered" from="Player/Head/Camera/WeaponPivot/WeaponMesh/WeaponHitbox" to="Player" method="_on_weapon_hitbox_body_entered"]
+[connection signal="area_entered" from="VictoryZone" to="CanvasLayer/Panel" method="_on_victory_zone_area_entered"]
 
 [editable path="Player"]
 [editable path="Player/Head"]
