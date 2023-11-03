@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d2vgv6ie0v40s"]
+[gd_scene load_steps=32 format=3 uid="uid://d2vgv6ie0v40s"]
 
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="1_km1jj"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="1_qgept"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://sofvlrq3jmka" path="res://Levels/Main/Materials/M_Dark.tres" id="4_m7xar"]
 [ext_resource type="Texture2D" uid="uid://bsypmdejmb4hv" path="res://Levels/Main/sky.exr" id="6_udrwv"]
 [ext_resource type="Script" path="res://Levels/Main/timer.gd" id="7_k1nvq"]
+[ext_resource type="PackedScene" uid="uid://b21aexobqgp1o" path="res://MenuScenes/pause_menu.tscn" id="8_g1tc1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_egctf"]
 size = Vector3(8, 4, 4)
@@ -347,6 +348,9 @@ offset_left = 6.0
 offset_top = 29.0
 offset_right = 46.0
 offset_bottom = 52.0
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_g1tc1")]
+metadata/_edit_use_anchors_ = true
 
 [node name="VictoryZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.144, 45.1718, 12.0625)

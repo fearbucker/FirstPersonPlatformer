@@ -21,10 +21,11 @@ func _process(delta):
 	$Minutes.text = "%02d:" % minutes
 	$Seconds.text = "%02d." % seconds
 	$Msecs.text = "%03d" % msec
-	$BestTime.text = str(best_time)
+	$BestTime.text = "%02d:%02d.%03d" % [int(fmod(best_time, 3600) / 60), int(fmod(best_time, 60)), int(fmod(best_time, 1) * 100)]
 	
 func stop() -> void:
 	set_process(false)
+	
 
 func _on_victory_zone_area_entered(area):
 	stop()
@@ -32,7 +33,6 @@ func _on_victory_zone_area_entered(area):
 	if best_time < 0 or time < best_time:
 		best_time = time
 		save_best_time()
-		$BestTime.text = str(best_time)
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://Levels/Transitions/lvl_1_2_transition.tscn")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfq4mocy1ygeg"]
 
-[ext_resource type="Script" path="res://Levels/Level Select.gd" id="1_gpur5"]
+[ext_resource type="Script" path="res://MenuScenes/Level Select.gd" id="1_2jm0q"]
 
 [node name="Level Select" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gpur5")
+script = ExtResource("1_2jm0q")
 
 [node name="Level 1" type="Button" parent="."]
 layout_mode = 1
