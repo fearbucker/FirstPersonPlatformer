@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfrjbsw0t60pu"]
+
+[ext_resource type="Script" path="res://Levels/Main/timer.gd" id="1_8q3i4"]
+
+[node name="Panel" type="Panel"]
+offset_right = 98.0
+offset_bottom = 25.0
+script = ExtResource("1_8q3i4")
+
+[node name="Minutes" type="Label" parent="."]
+layout_mode = 0
+offset_left = -9.0
+offset_right = 31.0
+offset_bottom = 26.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -1.0
+offset_right = 59.0
+offset_bottom = 25.0
+text = "00."
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Msecs" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 90.0
+offset_bottom = 26.0
+text = "000"
+horizontal_alignment = 2
+
+[node name="BestTime" type="Label" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 29.0
+offset_right = 46.0
+offset_bottom = 52.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq0cljd6hr2xh"]
+
+[ext_resource type="Texture2D" uid="uid://bsypmdejmb4hv" path="res://Levels/Main/sky.exr" id="1_3kojg"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_02f4c"]
+panorama = ExtResource("1_3kojg")
+
+[sub_resource type="Sky" id="Sky_t5ash"]
+sky_material = SubResource("PanoramaSkyMaterial_02f4c")
+
+[sub_resource type="Environment" id="Environment_7ofk6"]
+background_mode = 2
+sky = SubResource("Sky_t5ash")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.9
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[node name="Lighting" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7ofk6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0

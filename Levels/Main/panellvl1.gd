@@ -5,7 +5,7 @@ var minutes : int = 0
 var seconds: int = 0
 var msec: int = 0
 var best_time : float = -1
-var save_path = "user://lvl2.save"
+var save_path = "user://lvl1.save"
 var curr_time
 var curr_time_path = "user://currtime.save"
 
@@ -35,7 +35,7 @@ func _on_victory_zone_area_entered(area):
 		save_best_time()
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://Levels/Transitions/live_2_3_transition.tscn") # TODO ADD TRANSITION SCENE 
+	get_tree().change_scene_to_file("res://Levels/Transitions/lvl_1_2_transition.tscn") # TODO ADD TRANSITION SCENE 
 
 func save_best_time() -> void:
 	var file = FileAccess.open(save_path, FileAccess.WRITE_READ)

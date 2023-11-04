@@ -1,12 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://d2vgv6ie0v40s"]
+[gd_scene load_steps=28 format=3 uid="uid://d2vgv6ie0v40s"]
 
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="1_km1jj"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="1_qgept"]
 [ext_resource type="PackedScene" uid="uid://ctkc7yqdqdtao" path="res://Levels/Main/Geometry/Floor.tscn" id="1_yb0tt"]
 [ext_resource type="PackedScene" uid="uid://cdn7d5mxwdyks" path="res://Levels/Main/Geometry/Wall.tscn" id="3_jw8hm"]
 [ext_resource type="Material" uid="uid://sofvlrq3jmka" path="res://Levels/Main/Materials/M_Dark.tres" id="4_m7xar"]
-[ext_resource type="Texture2D" uid="uid://bsypmdejmb4hv" path="res://Levels/Main/sky.exr" id="6_udrwv"]
-[ext_resource type="Script" path="res://Levels/Main/timer.gd" id="7_k1nvq"]
+[ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="6_3x61a"]
+[ext_resource type="Script" path="res://Levels/Main/panellvl1.gd" id="7_jwruk"]
 [ext_resource type="PackedScene" uid="uid://b21aexobqgp1o" path="res://MenuScenes/pause_menu.tscn" id="8_g1tc1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_egctf"]
@@ -63,27 +63,6 @@ size = Vector3(5.095, 0.23, 4.85)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ul1ho"]
 points = PackedVector3Array(-2.5475, -0.115, -2.425, -2.5475, 0.115, -2.425, 2.547, -0.115, -2.425, -2.5475, -0.115, 2.425, -2.5475, 0.115, 2.425, 2.547, 0.115, -2.425, 2.547, -0.115, 2.425, 2.547, 0.115, 2.425)
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_02f4c"]
-panorama = ExtResource("6_udrwv")
-
-[sub_resource type="Sky" id="Sky_t5ash"]
-sky_material = SubResource("PanoramaSkyMaterial_02f4c")
-
-[sub_resource type="Environment" id="Environment_7ofk6"]
-background_mode = 2
-sky = SubResource("Sky_t5ash")
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.9
-tonemap_mode = 2
-ssao_enabled = true
-glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2nwh"]
-albedo_color = Color(0.690196, 0, 0.207843, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_pln7j"]
 
 [node name="L_Main" type="Node3D"]
@@ -91,9 +70,6 @@ script = ExtResource("1_km1jj")
 
 [node name="Player" parent="." instance=ExtResource("1_qgept")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Head" parent="Player" index="2"]
-grapple_point = NodePath("../../CSGSphere3D")
 
 [node name="WeaponMesh" parent="Player/Head/Camera/WeaponPivot" index="0"]
 transform = Transform3D(0.1, 0, 0, 0, 0.980955, 0.0194234, 0, -0.194234, 0.0980955, 0.28, -0.425, -0.4)
@@ -295,26 +271,14 @@ surface_material_override/0 = ExtResource("4_m7xar")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/TooSteep2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_do582")
 
-[node name="Lighting" type="Node" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
-environment = SubResource("Environment_7ofk6")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
-shadow_enabled = true
-directional_shadow_max_distance = 250.0
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-radius = 0.2
-material = SubResource("StandardMaterial3D_w2nwh")
+[node name="Lighting" parent="." instance=ExtResource("6_3x61a")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_right = 98.0
 offset_bottom = 25.0
-script = ExtResource("7_k1nvq")
+script = ExtResource("7_jwruk")
 
 [node name="Minutes" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0

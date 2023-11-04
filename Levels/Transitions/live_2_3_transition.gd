@@ -4,17 +4,16 @@ extends Control
 @onready var next_level = $"Next Level"
 @onready var your_best_time_was = $"Your Best Time was"
 var menu_scene = "res://MenuScenes/Main Scene.tscn"
-var curr_level = "res://Levels/Main/L_Main.tscn"
-var next_level_path = "res://Levels/Level2/level_2.tscn"
+var curr_level = "res://Levels/Level2/level_2.tscn"
 
-var lvlsave = "user://lvl1.save"
-var lvltime
+var lvl2save = "user://lvl2.save"
+var lvl2time
 var curr_time_path = "user://currtime.save"
 var curr_time
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_score1()
-	your_best_time_was.text = "Your best time was: " + number_round(lvltime)
+	your_best_time_was.text = "Your best time was: " + number_round(lvl2time)
 	load_curr_time()
 	your_time_was.text = "Your times was: " + number_round(curr_time)
 	
@@ -26,15 +25,15 @@ func load_curr_time():
 	curr_time = file.get_float()
 
 func load_score1():
-	if FileAccess.file_exists(lvlsave):
-		var file = FileAccess.open(lvlsave, FileAccess.READ)
-		lvltime = file.get_float()
+	if FileAccess.file_exists(lvl2save):
+		var file = FileAccess.open(lvl2save, FileAccess.READ)
+		lvl2time = file.get_float()
 
 func _on_retry_pressed():
 	get_tree().change_scene_to_file(curr_level)
 
-func _on_next_level_pressed():
-	get_tree().change_scene_to_file(next_level_path)
+func _on_next_level_pressed(): # TODO MAKE NEXT LEVEL
+	pass # Replace with function body.
 
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file(menu_scene)

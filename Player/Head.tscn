@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8drbos167vf8"]
+[gd_scene load_steps=16 format=3 uid="uid://b8drbos167vf8"]
 
 [ext_resource type="Script" path="res://Player/Head.gd" id="1_enjfg"]
 [ext_resource type="Texture2D" uid="uid://catc6bshmjlrl" path="res://Player/Assets/crosshair001.png" id="2_5qd2e"]
@@ -285,10 +285,14 @@ _data = {
 "wallrun": SubResource("Animation_pxprf")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpskw"]
+albedo_color = Color(0.203922, 0.427451, 0.670588, 1)
+
 [node name="Head" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
 script = ExtResource("1_enjfg")
 hook_reach = 20
+grapple_point = NodePath("GrapplePointNode/GrapplePoint")
 
 [node name="Camera" type="Camera3D" parent="."]
 current = true
@@ -342,5 +346,12 @@ transform = Transform3D(1, 0, 0, 0, -1.08732e-06, -1, 0, 24.875, -4.37114e-08, 0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1, -3)
 radius = 0.1
 height = 28.564
+
+[node name="GrapplePointNode" type="Node" parent="."]
+
+[node name="GrapplePoint" type="CSGSphere3D" parent="GrapplePointNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+radius = 0.1
+material = SubResource("StandardMaterial3D_kpskw")
 
 [connection signal="animation_finished" from="WeaponAnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://d216y6g84nqcd"]
+
+[ext_resource type="Script" path="res://Levels/Transitions/live_2_3_transition.gd" id="1_dbb1y"]
+
+[node name="Lvl1-2Transition" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dbb1y")
+
+[node name="Your Time Was" type="Label" parent="."]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 231.0
+offset_right = 245.0
+offset_bottom = 257.0
+text = "Your Time was: "
+
+[node name="Retry" type="Button" parent="."]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 366.0
+offset_right = 206.0
+offset_bottom = 403.0
+text = "RETRY"
+
+[node name="Next Level" type="Button" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 429.0
+offset_right = 323.0
+offset_bottom = 493.0
+text = "NEXT LEVEL
+"
+
+[node name="Your Best Time was" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 285.0
+offset_right = 166.0
+offset_bottom = 308.0
+text = "Your Best Time was: "
+
+[node name="MAIN MENU" type="Button" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 315.0
+offset_right = 712.0
+offset_bottom = 346.0
+text = "MAIN MENU"
+
+[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Next Level" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="MAIN MENU" to="." method="_on_main_menu_pressed"]
