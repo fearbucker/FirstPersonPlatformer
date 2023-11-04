@@ -14,9 +14,9 @@ var curr_time
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_score1()
-	your_best_time_was.text = "Your best time was: " + number_round(lvltime)
+	your_best_time_was.text = "YOUR BEST TIME WAS: " + number_round(lvltime)
 	load_curr_time()
-	your_time_was.text = "Your times was: " + number_round(curr_time)
+	your_time_was.text = "YOUR TIME WAS: " + number_round(curr_time)
 	
 func number_round(time):
 	return "%02d:%02d.%03d" % [int(fmod(time, 3600) / 60), int(fmod(time, 60)), int(fmod(time, 1) * 100)]

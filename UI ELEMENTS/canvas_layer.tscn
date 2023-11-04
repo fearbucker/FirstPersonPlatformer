@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg1ak6l8iwmtk"]
+[gd_scene load_steps=4 format=3 uid="uid://bg1ak6l8iwmtk"]
 
 [ext_resource type="Script" path="res://Levels/Main/timer.gd" id="1_c6uo7"]
+[ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="2_iawu0"]
 [ext_resource type="PackedScene" uid="uid://b21aexobqgp1o" path="res://MenuScenes/pause_menu.tscn" id="2_tolqd"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -12,18 +13,23 @@ script = ExtResource("1_c6uo7")
 
 [node name="Minutes" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = -9.0
-offset_right = 31.0
-offset_bottom = 26.0
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 30.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("2_iawu0")
+theme_override_font_sizes/font_size = 37
 text = "00:"
 horizontal_alignment = 2
 
 [node name="Seconds" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 32.0
-offset_top = -1.0
+offset_top = -7.0
 offset_right = 59.0
-offset_bottom = 25.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_iawu0")
+theme_override_font_sizes/font_size = 37
 text = "00."
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -31,8 +37,11 @@ vertical_alignment = 1
 [node name="Msecs" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 50.0
+offset_top = -6.0
 offset_right = 90.0
-offset_bottom = 26.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("2_iawu0")
+theme_override_font_sizes/font_size = 37
 text = "000"
 horizontal_alignment = 2
 
@@ -42,6 +51,8 @@ offset_left = 6.0
 offset_top = 29.0
 offset_right = 46.0
 offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("2_iawu0")
+theme_override_font_sizes/font_size = 37
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_tolqd")]
 metadata/_edit_use_anchors_ = true

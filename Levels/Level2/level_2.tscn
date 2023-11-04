@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://s163reogx6ag"]
+[gd_scene load_steps=8 format=3 uid="uid://s163reogx6ag"]
 
 [ext_resource type="Script" path="res://Levels/Main/timer.gd" id="1_re53m"]
 [ext_resource type="Script" path="res://Levels/Level2/level_2.gd" id="1_x5agx"]
 [ext_resource type="PackedScene" uid="uid://b21aexobqgp1o" path="res://MenuScenes/pause_menu.tscn" id="2_0olrw"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="2_b7nm2"]
+[ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="3_0omi2"]
 [ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="4_p83pp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iqinc"]
@@ -19,37 +20,43 @@ offset_bottom = 25.0
 script = ExtResource("1_re53m")
 
 [node name="Minutes" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = -9.0
-offset_right = 31.0
-offset_bottom = 26.0
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 30.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_0omi2")
+theme_override_font_sizes/font_size = 37
 text = "00:"
 horizontal_alignment = 2
 
 [node name="Seconds" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 0
 offset_left = 32.0
-offset_top = -1.0
+offset_top = -7.0
 offset_right = 59.0
-offset_bottom = 25.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_0omi2")
+theme_override_font_sizes/font_size = 37
 text = "00."
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Msecs" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 0
 offset_left = 50.0
+offset_top = -6.0
 offset_right = 90.0
-offset_bottom = 26.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_0omi2")
+theme_override_font_sizes/font_size = 37
 text = "000"
 horizontal_alignment = 2
 
 [node name="BestTime" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 0
 offset_left = 6.0
-offset_top = 29.0
+offset_top = 21.0
 offset_right = 46.0
-offset_bottom = 52.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("3_0omi2")
+theme_override_font_sizes/font_size = 37
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_0olrw")]
 metadata/_edit_use_anchors_ = true

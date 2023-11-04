@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bc1dgrfrq237u"]
+[gd_scene load_steps=20 format=3 uid="uid://bc1dgrfrq237u"]
 
 [ext_resource type="Material" uid="uid://cfjm0psintcl8" path="res://Assets/orange_texture.tres" id="1_1eh6c"]
 [ext_resource type="Script" path="res://Levels/Main/lvl_1_map.gd" id="1_32m15"]
 [ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="1_u7q8d"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="2_a0icy"]
+[ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="5_gd7qh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dl2ea"]
 
@@ -35,6 +36,11 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xbjex"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="BoxMesh" id="BoxMesh_ayfg8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ok81n"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
 [node name="Lvl1Map" type="Node3D"]
 script = ExtResource("1_32m15")
 
@@ -51,16 +57,6 @@ mesh = SubResource("BoxMesh_dl2ea")
 [node name="StaticBody3D" type="StaticBody3D" parent="SimpleFloor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleFloor/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_y1mf2")
-
-[node name="SimpleFloor3" type="MeshInstance3D" parent="."]
-transform = Transform3D(10.58, 0, 0, 0, 0.219, 0, 0, 0, 9.621, -20.0642, 24.2829, -183.486)
-material_override = ExtResource("1_1eh6c")
-mesh = SubResource("BoxMesh_dl2ea")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SimpleFloor3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleFloor3/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_y1mf2")
 
 [node name="SimpleFloor2" type="MeshInstance3D" parent="."]
@@ -113,20 +109,28 @@ surface_material_override/0 = ExtResource("1_1eh6c")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Skinny2/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_7ytk7")
 
+[node name="Skinny5" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.33, 0, 0, 0, 10, -42.6513, 26.3599, -182.602)
+mesh = SubResource("BoxMesh_2ecgt")
+surface_material_override/0 = ExtResource("1_1eh6c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Skinny5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skinny5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7ytk7")
+
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(10.27, 0, 0, 0, 51.9, 0, 0, 0, 177.24, -12.8091, 23.7399, -76.4211)
 mesh = SubResource("BoxMesh_cluh7")
 surface_material_override/0 = ExtResource("1_1eh6c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_oqs4c")
 
 [node name="JumpBox" type="MeshInstance3D" parent="."]
-transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, -0.295899, -44.3877)
 mesh = SubResource("BoxMesh_xh3bf")
 surface_material_override/0 = ExtResource("1_1eh6c")
 
@@ -138,7 +142,7 @@ transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, 
 shape = SubResource("ConvexPolygonShape3D_ahrj6")
 
 [node name="JumpBox2" type="MeshInstance3D" parent="."]
-transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 4.06586, -74.2851)
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 2.1231, -74.2851)
 mesh = SubResource("BoxMesh_xh3bf")
 surface_material_override/0 = ExtResource("1_1eh6c")
 
@@ -229,36 +233,6 @@ mesh = SubResource("BoxMesh_3hmna")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpWall5/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_52q4o")
 
-[node name="JumpWall2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.03258e-08, 0, -27.145, 0, 14.015, 0, 0.465, 0, -1.18655e-06, -23.0449, 35.8532, -192.316)
-material_override = ExtResource("1_1eh6c")
-mesh = SubResource("BoxMesh_3hmna")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="JumpWall2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpWall2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_52q4o")
-
-[node name="JumpWall4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.03258e-08, 0, -27.145, 0, 14.015, 0, 0.465, 0, -1.18655e-06, -23.0449, 54.9248, -192.316)
-material_override = ExtResource("1_1eh6c")
-mesh = SubResource("BoxMesh_3hmna")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="JumpWall4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpWall4/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_52q4o")
-
-[node name="JumpWall3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.03258e-08, 0, -27.145, 0, 14.015, 0, 0.465, 0, -1.18655e-06, -23.0449, 39.7893, -175.996)
-material_override = ExtResource("1_1eh6c")
-mesh = SubResource("BoxMesh_3hmna")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="JumpWall3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpWall3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_52q4o")
-
 [node name="Grapple_Box" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.94, 0, 0, 0, 2.94, 0, 0, 0, 2.94, 0, 30.7664, -152.92)
 material_override = ExtResource("1_1eh6c")
@@ -268,3 +242,85 @@ mesh = SubResource("BoxMesh_i53ao")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grapple_Box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_xbjex")
+
+[node name="Grapple_Box2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.94, 0, 0, 0, 2.94, 0, 0, 0, 2.94, -25.8236, 30.7664, -183.68)
+material_override = ExtResource("1_1eh6c")
+mesh = SubResource("BoxMesh_i53ao")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Grapple_Box2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grapple_Box2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_xbjex")
+
+[node name="SimpleWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 23.14, 0, 0, 0, 11, -47.5537, 36.6649, -182.687)
+mesh = SubResource("BoxMesh_ayfg8")
+surface_material_override/0 = ExtResource("1_1eh6c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SimpleWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleWall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ok81n")
+
+[node name="SimpleWall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 11, 0, 23.14, 0, -1, 0, -4.80825e-07, -43.1532, 36.6649, -187.976)
+mesh = SubResource("BoxMesh_ayfg8")
+surface_material_override/0 = ExtResource("1_1eh6c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SimpleWall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleWall2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ok81n")
+
+[node name="SimpleWall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 11, 0, 23.14, 0, -1, 0, -4.80825e-07, -43.1532, 36.6649, -177.131)
+mesh = SubResource("BoxMesh_ayfg8")
+surface_material_override/0 = ExtResource("1_1eh6c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SimpleWall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleWall3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ok81n")
+
+[node name="Text" type="Node" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0948, -5.31837)
+billboard = 1
+text = "USE WASD TO MOVE
+SHIFT TO SPRINT
+CTRL TO CROUCH"
+font = ExtResource("5_gd7qh")
+font_size = 162
+
+[node name="Label3D2" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1601, -39.3848)
+billboard = 1
+text = "PRESS SPACEBAR TO JUMP"
+font = ExtResource("5_gd7qh")
+font_size = 162
+
+[node name="Label3D3" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75157, -48.9259)
+billboard = 1
+text = "PRESS SPACEBAR WHILE IN AIR
+TO DOUBLE JUMP"
+font = ExtResource("5_gd7qh")
+font_size = 162
+
+[node name="Label3D4" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.34321, -78.9852)
+billboard = 1
+text = "YOU CAN WALLRUN
+WALLRUNNING RESETS YOUR JUMPS"
+font = ExtResource("5_gd7qh")
+font_size = 162
+
+[node name="Label3D5" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.7488, -139.53)
+billboard = 1
+text = "PRESS Q WHILE BLUE CIRCLE IS SHOWN
+TO GRAPPLE "
+font = ExtResource("5_gd7qh")
+font_size = 162

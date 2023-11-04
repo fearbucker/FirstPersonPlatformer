@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfq4mocy1ygeg"]
+[gd_scene load_steps=3 format=3 uid="uid://dfq4mocy1ygeg"]
 
 [ext_resource type="Script" path="res://MenuScenes/Level Select.gd" id="1_2jm0q"]
+[ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="2_7ieq3"]
 
 [node name="Level Select" type="Control"]
 layout_mode = 3
@@ -24,6 +25,8 @@ offset_right = -408.0
 offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_7ieq3")
+theme_override_font_sizes/font_size = 36
 text = "LEVEL 1"
 
 [node name="Level 1 Best Time" type="Label" parent="."]
@@ -32,6 +35,8 @@ offset_left = 186.0
 offset_top = 50.0
 offset_right = 226.0
 offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("2_7ieq3")
+theme_override_font_sizes/font_size = 36
 
 [node name="Level 2" type="Button" parent="."]
 layout_mode = 1
@@ -46,6 +51,9 @@ offset_right = -408.0
 offset_bottom = -183.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(0.927669, 0.581315, 0.77136, 1)
+theme_override_fonts/font = ExtResource("2_7ieq3")
+theme_override_font_sizes/font_size = 36
 text = "LEVEL 2"
 
 [node name="Level 2 Best Time" type="Label" parent="."]
@@ -54,7 +62,9 @@ offset_left = 184.0
 offset_top = 109.0
 offset_right = 224.0
 offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("2_7ieq3")
+theme_override_font_sizes/font_size = 36
 
 [connection signal="pressed" from="Level 1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="Level 2" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Level 2" to="." method="_on_level_1_pressed"]
