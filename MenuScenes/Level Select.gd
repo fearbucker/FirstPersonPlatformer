@@ -1,8 +1,8 @@
 extends Control
 
 #CREATE REFERENCE TO ALL LEVEL BEST TIMES HERE
-@onready var level_1_best_time = $"Level 1 Best Time"
-@onready var level_2_best_time = $"Level 2 Best Time"
+@onready var level_1_best_time = $"CanvasLayer/Level 1 Best Time"
+@onready var level_2_best_time = $"CanvasLayer/Level 2 Best Time"
 
 # INDEX OF ALL SCORE FILES
 var score_files = {

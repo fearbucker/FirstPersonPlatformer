@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx52h205ix0vj"]
+[gd_scene load_steps=20 format=3 uid="uid://bx52h205ix0vj"]
 
 [ext_resource type="Script" path="res://MenuScenes/Main Scene.gd" id="1_2umal"]
 [ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="2_jmyv4"]
+[ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="3_yoil6"]
+[ext_resource type="Material" uid="uid://cfjm0psintcl8" path="res://Assets/orange_texture.tres" id="4_a2cde"]
+[ext_resource type="Script" path="res://MenuScenes/Camera3D.gd" id="5_tgiyc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dl2ea"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y1mf2"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ecgt"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7ytk7"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cluh7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oqs4c"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xh3bf"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ahrj6"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3hmna"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_52q4o"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i53ao"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xbjex"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ayfg8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ok81n"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [node name="Main Scene" type="Control"]
 layout_mode = 3
@@ -21,8 +59,265 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="Menu"]
-layout_mode = 1
+[node name="BG" type="Node3D" parent="Menu"]
+
+[node name="Lvl1Map" type="Node3D" parent="Menu/BG"]
+
+[node name="Lighting" parent="Menu/BG/Lvl1Map" instance=ExtResource("3_yoil6")]
+
+[node name="SimpleFloor" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(15.94, 0, 0, 0, 0.33, 0, 0, 0, 14.495, 0, 0, 0)
+material_override = ExtResource("4_a2cde")
+mesh = SubResource("BoxMesh_dl2ea")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/SimpleFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/SimpleFloor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_y1mf2")
+
+[node name="SimpleFloor2" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(15.94, 0, 0, 0, 0.33, 0, 0, 0, 14.495, 0, 0, -34.7475)
+material_override = ExtResource("4_a2cde")
+mesh = SubResource("BoxMesh_dl2ea")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/SimpleFloor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/SimpleFloor2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_y1mf2")
+
+[node name="Skinny" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(1, 0, 0, 0, 0.33, 0, 0, 0, 26.985, 0, 0, -18.1349)
+mesh = SubResource("BoxMesh_2ecgt")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Skinny"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Skinny/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7ytk7")
+
+[node name="Skinny3" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(1.42354, -0.01892, 9.76827, 0, 0.325937, 4.22138, -0.560747, -0.0480313, 24.7982, -11.9714, 55.6524, -138.17)
+mesh = SubResource("BoxMesh_2ecgt")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Skinny3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Skinny3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7ytk7")
+
+[node name="Skinny4" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(1.42838, 0.0185002, -9.5515, 0, 0.325937, 4.22138, 0.548303, -0.0481946, 24.8825, -34.6549, 55.6524, -138.17)
+mesh = SubResource("BoxMesh_2ecgt")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Skinny4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Skinny4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7ytk7")
+
+[node name="Skinny2" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(15.655, 0, 0, 0, 0.33, 0, 0, 0, 26.985, -23.2717, 53.7106, -160.998)
+mesh = SubResource("BoxMesh_2ecgt")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Skinny2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Skinny2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7ytk7")
+
+[node name="Skinny5" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(10, 0, 0, 0, 0.33, 0, 0, 0, 10, -42.6513, 26.3599, -182.602)
+mesh = SubResource("BoxMesh_2ecgt")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Skinny5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Skinny5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7ytk7")
+
+[node name="Wall" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(10.27, 0, 0, 0, 51.9, 0, 0, 0, 177.24, -12.8091, 23.7399, -76.4211)
+mesh = SubResource("BoxMesh_cluh7")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Wall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_oqs4c")
+
+[node name="JumpBox" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, -0.295899, -44.3877)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox/StaticBody3D"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpBox2" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 2.1231, -74.2851)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox2"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox2/StaticBody3D"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpBox3" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 11.5293, -136.273)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox3"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox3/StaticBody3D"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpBox5" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(6.885, 0, 0, 0, 15, 0, 0, 0, 6.375, -3.94163, 50.5742, -112.851)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox5"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox5/StaticBody3D"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpBox6" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(6.885, 0, 0, 0, 15, 0, 0, 0, 6.375, -3.94163, 54.3169, -93.2484)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox6"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox6/StaticBody3D"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpBox7" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(6.885, 0, 0, 0, 15, 0, 0, 0, 6.375, -3.94163, 68.0392, -47.3275)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox7"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox7/StaticBody3D"]
+transform = Transform3D(15.9, 0, 0, 0, 4.33, 0, 0, 0, 5.45, 0.147823, 0.464971, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpBox4" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(7.82953, 0, 4.74344, 0, 4.33, 0, -13.8387, 0, 2.68371, -5.56341, 17.0571, -169.893)
+mesh = SubResource("BoxMesh_xh3bf")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpBox4"]
+transform = Transform3D(0.0628931, 0, 0, 0, 0.230947, 0, 0, 0, 0.183486, -0.00929707, -0.107384, 8.14453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpBox4/StaticBody3D"]
+transform = Transform3D(15.9, 0, -2.38419e-07, 0, 4.33, 0, 0, 0, 5.45, 0.147827, 0.46497, -44.3877)
+shape = SubResource("ConvexPolygonShape3D_ahrj6")
+
+[node name="JumpWall" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(0.465, 0, 0, 0, 23.345, 0, 0, 0, 27.145, 13.6757, 7.4844, -103.259)
+material_override = ExtResource("4_a2cde")
+mesh = SubResource("BoxMesh_3hmna")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpWall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_52q4o")
+
+[node name="JumpWall5" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(0.465, 0, 0, 0, 23.345, 0, 0, 0, 27.145, 6.4088, 68.8205, -73.2307)
+material_override = ExtResource("4_a2cde")
+mesh = SubResource("BoxMesh_3hmna")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/JumpWall5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/JumpWall5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_52q4o")
+
+[node name="Grapple_Box" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(2.94, 0, 0, 0, 2.94, 0, 0, 0, 2.94, 0, 30.7664, -152.92)
+material_override = ExtResource("4_a2cde")
+mesh = SubResource("BoxMesh_i53ao")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Grapple_Box"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Grapple_Box/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_xbjex")
+
+[node name="Grapple_Box2" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(2.94, 0, 0, 0, 2.94, 0, 0, 0, 2.94, -25.8236, 30.7664, -183.68)
+material_override = ExtResource("4_a2cde")
+mesh = SubResource("BoxMesh_i53ao")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/Grapple_Box2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Grapple_Box2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_xbjex")
+
+[node name="SimpleWall" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(1, 0, 0, 0, 23.14, 0, 0, 0, 11, -47.5537, 36.6649, -182.687)
+mesh = SubResource("BoxMesh_ayfg8")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/SimpleWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/SimpleWall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ok81n")
+
+[node name="SimpleWall2" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(-4.37114e-08, 0, 11, 0, 23.14, 0, -1, 0, -4.80825e-07, -43.1532, 36.6649, -187.976)
+mesh = SubResource("BoxMesh_ayfg8")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/SimpleWall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/SimpleWall2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ok81n")
+
+[node name="SimpleWall3" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(-4.37114e-08, 0, 11, 0, 23.14, 0, -1, 0, -4.80825e-07, -43.1532, 36.6649, -177.131)
+mesh = SubResource("BoxMesh_ayfg8")
+surface_material_override/0 = ExtResource("4_a2cde")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Menu/BG/Lvl1Map/SimpleWall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/SimpleWall3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ok81n")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Menu/BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Menu/BG/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Menu/BG/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.17272, 0, 0.984971, -0.920097, -0.356917, 0.161344, 0.351553, -0.934136, -0.0616467, 18.0533, 29.0118, 31.4208)
+script = ExtResource("5_tgiyc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Menu"]
+
+[node name="Play" type="Button" parent="Menu/CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -38,8 +333,7 @@ theme_override_fonts/font = ExtResource("2_jmyv4")
 theme_override_font_sizes/font_size = 76
 text = "PLAY"
 
-[node name="Quit" type="Button" parent="Menu"]
-layout_mode = 1
+[node name="Quit" type="Button" parent="Menu/CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,5 +349,5 @@ theme_override_fonts/font = ExtResource("2_jmyv4")
 theme_override_font_sizes/font_size = 76
 text = "QUIT"
 
-[connection signal="pressed" from="Menu/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/CanvasLayer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/CanvasLayer/Quit" to="." method="_on_quit_pressed"]
