@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq0cljd6hr2xh"]
 
-[ext_resource type="Texture2D" uid="uid://bsypmdejmb4hv" path="res://Levels/Main/sky.exr" id="1_3kojg"]
+[ext_resource type="Texture2D" uid="uid://dclya7qo6847d" path="res://Epic_GloriousPink_EquiRect.png" id="1_u5awe"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_02f4c"]
-panorama = ExtResource("1_3kojg")
+panorama = ExtResource("1_u5awe")
 
 [sub_resource type="Sky" id="Sky_t5ash"]
 sky_material = SubResource("PanoramaSkyMaterial_02f4c")
@@ -17,7 +17,6 @@ ambient_light_sky_contribution = 0.9
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 
 [node name="Lighting" type="Node"]
