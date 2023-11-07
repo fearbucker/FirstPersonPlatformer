@@ -24,8 +24,6 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Escape"):
-		get_tree().quit()
 	
 	if event.is_action_pressed(&"change_mouse_input"):
 		match Input.get_mouse_mode():

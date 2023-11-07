@@ -30,15 +30,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -231.5
-offset_top = -114.0
-offset_right = 231.5
-offset_bottom = 114.0
+offset_left = -531.0
+offset_top = -108.0
+offset_right = -52.0
+offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_rjwv8")
 theme_override_font_sizes/font_size = 91
 text = "PAUSED
 
-PRESS ESC TO RESUME"
-horizontal_alignment = 1
+PRESS ESC TO RESUME
+Q TO QUIT
+M TO RETURN TO MENU"

@@ -72,6 +72,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Menu"]
+
+[node name="Play" type="Button" parent="Menu/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = -85.5
+offset_right = 132.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_jmyv4")
+theme_override_font_sizes/font_size = 76
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="Menu/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = 33.0
+offset_right = 132.5
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_jmyv4")
+theme_override_font_sizes/font_size = 76
+text = "QUIT"
+
 [node name="BG" type="Node3D" parent="Menu"]
 
 [node name="Lvl1Map" type="Node3D" parent="Menu/BG"]
@@ -338,40 +372,6 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="Menu/BG/SubViewportContainer/SubViewport"]
 transform = Transform3D(0.17272, 0, 0.984971, -0.920097, -0.356917, 0.161344, 0.351553, -0.934136, -0.0616467, 18.0533, 29.0118, 31.4208)
 script = ExtResource("5_tgiyc")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Menu"]
-
-[node name="Play" type="Button" parent="Menu/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -132.5
-offset_top = -85.5
-offset_right = 132.5
-offset_bottom = -0.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_jmyv4")
-theme_override_font_sizes/font_size = 76
-text = "PLAY"
-
-[node name="Quit" type="Button" parent="Menu/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -132.5
-offset_top = 33.0
-offset_right = 132.5
-offset_bottom = 118.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_jmyv4")
-theme_override_font_sizes/font_size = 76
-text = "QUIT"
 
 [connection signal="pressed" from="Menu/CanvasLayer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/CanvasLayer/Quit" to="." method="_on_quit_pressed"]
