@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfq4mocy1ygeg"]
+[gd_scene load_steps=9 format=3 uid="uid://dfq4mocy1ygeg"]
 
 [ext_resource type="Script" path="res://MenuScenes/Level Select.gd" id="1_2jm0q"]
 [ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="2_7ieq3"]
+[ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="3_40q8o"]
+[ext_resource type="Script" path="res://MenuScenes/Camera3D.gd" id="5_ppeir"]
+[ext_resource type="Texture2D" uid="uid://de744t45ky7db" path="res://Player/Assets/Water_preview.jpgC878A51E-2B84-45CA-85CB-75E5BC88EEC8Large.jpg" id="5_qul2v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xahkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0d5vj"]
+albedo_color = Color(0, 0.521569, 0.694118, 0.870588)
+roughness = 0.03
+normal_enabled = true
+normal_scale = -0.25
+normal_texture = ExtResource("5_qul2v")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uj4m0"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="Level Select" type="Control"]
 layout_mode = 3
@@ -31,10 +46,17 @@ theme_override_font_sizes/font_size = 36
 text = "LEVEL 1"
 
 [node name="Level 1 Best Time" type="Label" parent="CanvasLayer"]
-offset_left = 186.0
-offset_top = 50.0
-offset_right = 226.0
-offset_bottom = 79.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = -274.0
+offset_right = -327.0
+offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_7ieq3")
 theme_override_font_sizes/font_size = 36
 
@@ -56,10 +78,17 @@ theme_override_font_sizes/font_size = 36
 text = "LEVEL 2"
 
 [node name="Level 2 Best Time" type="Label" parent="CanvasLayer"]
-offset_left = 184.0
-offset_top = 109.0
-offset_right = 224.0
-offset_bottom = 138.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -366.485
+offset_top = -215.0
+offset_right = -326.485
+offset_bottom = -186.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_7ieq3")
 theme_override_font_sizes/font_size = 36
 
@@ -71,6 +100,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.984314, 0.509804, 0.235294, 1)
+
+[node name="BG" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="BG/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="BG/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.17272, 0, 0.984971, -0.920097, -0.356917, 0.161344, 0.351553, -0.934136, -0.0616467, 18.0533, 29.0118, 31.4208)
+script = ExtResource("5_ppeir")
+
+[node name="Lighting" parent="BG" instance=ExtResource("3_40q8o")]
+
+[node name="Ocean" type="MeshInstance3D" parent="BG"]
+transform = Transform3D(99999, 0, 0, 0, 5, 0, 0, 0, 9999, 0, -4.89241, 0)
+mesh = SubResource("BoxMesh_xahkd")
+surface_material_override/0 = SubResource("StandardMaterial3D_0d5vj")
+
+[node name="Area3D" type="Area3D" parent="BG/Ocean"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BG/Ocean/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_uj4m0")
 
 [connection signal="pressed" from="CanvasLayer/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Level 2" to="." method="_on_level_2_pressed"]

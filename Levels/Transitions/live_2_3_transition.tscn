@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://d216y6g84nqcd"]
+[gd_scene load_steps=9 format=3 uid="uid://d216y6g84nqcd"]
 
 [ext_resource type="Script" path="res://Levels/Transitions/live_2_3_transition.gd" id="1_dbb1y"]
 [ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="2_fn1td"]
+[ext_resource type="Script" path="res://MenuScenes/Camera3D.gd" id="2_qn8vw"]
+[ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="3_ryugx"]
+[ext_resource type="Texture2D" uid="uid://de744t45ky7db" path="res://Player/Assets/Water_preview.jpgC878A51E-2B84-45CA-85CB-75E5BC88EEC8Large.jpg" id="4_fbmki"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xpwdp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owa6w"]
+albedo_color = Color(0, 0.521569, 0.694118, 0.870588)
+roughness = 0.03
+normal_enabled = true
+normal_scale = -0.25
+normal_texture = ExtResource("4_fbmki")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_30p11"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="Lvl1-2Transition" type="Control"]
 layout_mode = 3
@@ -12,8 +27,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dbb1y")
 
-[node name="Your Time Was" type="Label" parent="."]
-layout_mode = 1
+[node name="BG" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="BG/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="BG/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.17272, 0, 0.984971, -0.920097, -0.356917, 0.161344, 0.351553, -0.934136, -0.0616467, 18.0533, 29.0118, 31.4208)
+script = ExtResource("2_qn8vw")
+
+[node name="Lighting" parent="BG" instance=ExtResource("3_ryugx")]
+
+[node name="Ocean" type="MeshInstance3D" parent="BG"]
+transform = Transform3D(99999, 0, 0, 0, 5, 0, 0, 0, 9999, 0, -4.89241, 0)
+mesh = SubResource("BoxMesh_xpwdp")
+surface_material_override/0 = SubResource("StandardMaterial3D_owa6w")
+
+[node name="Area3D" type="Area3D" parent="BG/Ocean"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BG/Ocean/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_30p11")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Your Time Was" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -26,8 +73,7 @@ theme_override_font_sizes/font_size = 71
 text = "Your Time was: "
 horizontal_alignment = 1
 
-[node name="Retry" type="Button" parent="."]
-layout_mode = 1
+[node name="Retry" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,8 +89,7 @@ theme_override_fonts/font = ExtResource("2_fn1td")
 theme_override_font_sizes/font_size = 56
 text = "RETRY"
 
-[node name="Next Level" type="Button" parent="."]
-layout_mode = 1
+[node name="Next Level" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -61,8 +106,7 @@ theme_override_font_sizes/font_size = 56
 text = "NEXT LEVEL
 "
 
-[node name="Your Best Time was" type="Label" parent="."]
-layout_mode = 1
+[node name="Your Best Time was" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -76,8 +120,7 @@ theme_override_font_sizes/font_size = 71
 text = "Your Best Time was: "
 horizontal_alignment = 1
 
-[node name="MAIN MENU" type="Button" parent="."]
-layout_mode = 1
+[node name="MAIN MENU" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -93,6 +136,6 @@ theme_override_fonts/font = ExtResource("2_fn1td")
 theme_override_font_sizes/font_size = 56
 text = "MAIN MENU"
 
-[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="Next Level" to="." method="_on_next_level_pressed"]
-[connection signal="pressed" from="MAIN MENU" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/Next Level" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/MAIN MENU" to="." method="_on_main_menu_pressed"]

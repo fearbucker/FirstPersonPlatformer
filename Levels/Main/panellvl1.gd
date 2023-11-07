@@ -5,7 +5,7 @@ var minutes : int = 0
 var seconds: int = 0
 var msec: int = 0
 var best_time : float = -1
-var save_path = "user://lvl1.save"
+var save_path = "user://lvl1.save" # CHANGE THIS FOR EACH LVL
 var curr_time
 var curr_time_path = "user://currtime.save"
 

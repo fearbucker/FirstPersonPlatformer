@@ -1,8 +1,11 @@
 extends Control
-@onready var your_time_was = $"Your Time Was"
-@onready var retry = $Retry
-@onready var next_level = $"Next Level"
-@onready var your_best_time_was = $"Your Best Time was"
+@onready var your_time_was = $"CanvasLayer/Your Time Was"
+
+@onready var retry = $CanvasLayer/Retry
+
+@onready var next_level = $"CanvasLayer/Next Level"
+
+@onready var your_best_time_was = $"CanvasLayer/Your Best Time was"
 var menu_scene = "res://MenuScenes/Main Scene.tscn"
 var curr_level = "res://Levels/Level2/level_2.tscn"
 

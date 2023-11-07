@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bx52h205ix0vj"]
+[gd_scene load_steps=24 format=3 uid="uid://bx52h205ix0vj"]
 
 [ext_resource type="Script" path="res://MenuScenes/Main Scene.gd" id="1_2umal"]
 [ext_resource type="FontFile" uid="uid://dmco0k4qpb35i" path="res://Assets/m3x6.ttf" id="2_jmyv4"]
 [ext_resource type="PackedScene" uid="uid://dq0cljd6hr2xh" path="res://UI ELEMENTS/lighting.tscn" id="3_yoil6"]
 [ext_resource type="Material" uid="uid://cfjm0psintcl8" path="res://Assets/orange_texture.tres" id="4_a2cde"]
+[ext_resource type="Texture2D" uid="uid://de744t45ky7db" path="res://Player/Assets/Water_preview.jpgC878A51E-2B84-45CA-85CB-75E5BC88EEC8Large.jpg" id="4_pjwgi"]
 [ext_resource type="Script" path="res://MenuScenes/Camera3D.gd" id="5_tgiyc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dl2ea"]
@@ -40,6 +41,18 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ok81n"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbw6p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxipg"]
+albedo_color = Color(0, 0.521569, 0.694118, 0.870588)
+roughness = 0.03
+normal_enabled = true
+normal_scale = -0.25
+normal_texture = ExtResource("4_pjwgi")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e0dca"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="Main Scene" type="Control"]
 layout_mode = 3
@@ -299,12 +312,23 @@ surface_material_override/0 = ExtResource("4_a2cde")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/SimpleWall3/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_ok81n")
 
+[node name="Ocean" type="MeshInstance3D" parent="Menu/BG/Lvl1Map"]
+transform = Transform3D(99999, 0, 0, 0, 5, 0, 0, 0, 9999, 0, -4.89241, 0)
+mesh = SubResource("BoxMesh_xbw6p")
+surface_material_override/0 = SubResource("StandardMaterial3D_yxipg")
+
+[node name="Area3D" type="Area3D" parent="Menu/BG/Lvl1Map/Ocean"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/BG/Lvl1Map/Ocean/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_e0dca")
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Menu/BG"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Menu/BG/SubViewportContainer"]
 handle_input_locally = false
