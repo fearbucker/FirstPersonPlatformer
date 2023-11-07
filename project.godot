@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="First Person Starter"
+config/name="Nondescript First Person Platformer"
 run/main_scene="res://MenuScenes/Main Scene.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.png"
